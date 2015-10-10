@@ -1,0 +1,531 @@
+{
+  "nodes": [
+    {
+      "lon_min": -73.999978599999992, 
+      "lat_min": 40.680342420000002, 
+      "node_type": "source", 
+      "color_index": 0, 
+      "lat": 40.694576765324669, 
+      "id": 0, 
+      "lat_max": 40.716887, 
+      "name": "Brooklyn", 
+      "lon": -73.975224241818211, 
+      "lon_max": -73.950047979999994, 
+      "target_node_id": 7
+    }, 
+    {
+      "lon_min": -74.007756000000001, 
+      "lat_min": 40.732241190000003, 
+      "node_type": "source", 
+      "color_index": 1, 
+      "lat": 40.752690507808218, 
+      "id": 1, 
+      "lat_max": 40.771521999999997, 
+      "name": "Chelsea", 
+      "lon": -73.992474002739726, 
+      "lon_max": -73.973714650000005, 
+      "target_node_id": 8
+    }, 
+    {
+      "lon_min": -73.986022129999995, 
+      "lat_min": 40.736502000000002, 
+      "node_type": "source", 
+      "color_index": 2, 
+      "lat": 40.750180160294107, 
+      "id": 2, 
+      "lat_max": 40.761628000000002, 
+      "name": "Gramercy Park", 
+      "lon": -73.974153051764702, 
+      "lon_max": -73.959206219999999, 
+      "target_node_id": 9
+    }, 
+    {
+      "lon_min": -73.997046799999993, 
+      "lat_min": 40.710762279999997, 
+      "node_type": "source", 
+      "color_index": 3, 
+      "lat": 40.724486977741932, 
+      "id": 3, 
+      "lat_max": 40.738274279999999, 
+      "name": "Lower East Side", 
+      "lon": -73.98607585612902, 
+      "lon_max": -73.974224939999999, 
+      "target_node_id": 10
+    }, 
+    {
+      "lon_min": -74.01713445, 
+      "lat_min": 40.701221279999999, 
+      "node_type": "source", 
+      "color_index": 4, 
+      "lat": 40.708607799310343, 
+      "id": 4, 
+      "lat_max": 40.71754834, 
+      "name": "Lower Manhattan", 
+      "lon": -74.008950297241384, 
+      "lon_max": -73.996826189999993, 
+      "target_node_id": 11
+    }, 
+    {
+      "lon_min": -73.986830769999997, 
+      "lat_min": 40.740258779999998, 
+      "node_type": "source", 
+      "color_index": 5, 
+      "lat": 40.752876987777775, 
+      "id": 5, 
+      "lat_max": 40.765909360000002, 
+      "name": "Upper East Side", 
+      "lon": -73.976604794444441, 
+      "lon_max": -73.964784730000005, 
+      "target_node_id": 12
+    }, 
+    {
+      "lon_min": -74.011219780000005, 
+      "lat_min": 40.714504509999998, 
+      "node_type": "source", 
+      "color_index": 6, 
+      "lat": 40.726125133658535, 
+      "id": 6, 
+      "lat_max": 40.741951380000003, 
+      "name": "Village/Soho", 
+      "lon": -74.003323492195122, 
+      "lon_max": -73.9907647, 
+      "target_node_id": 13
+    }, 
+    {
+      "lon_min": -73.999978599999992, 
+      "lat_min": 40.680342420000002, 
+      "lat": 40.694576765324669, 
+      "node_type": "target", 
+      "color_index": 0, 
+      "source_node_id": 0, 
+      "id": 7, 
+      "lat_max": 40.716887, 
+      "name": "Brooklyn", 
+      "lon": -73.975224241818211, 
+      "lon_max": -73.950047979999994
+    }, 
+    {
+      "lon_min": -74.007756000000001, 
+      "lat_min": 40.732241190000003, 
+      "lat": 40.752690507808218, 
+      "node_type": "target", 
+      "color_index": 1, 
+      "source_node_id": 1, 
+      "id": 8, 
+      "lat_max": 40.771521999999997, 
+      "name": "Chelsea", 
+      "lon": -73.992474002739726, 
+      "lon_max": -73.973714650000005
+    }, 
+    {
+      "lon_min": -73.986022129999995, 
+      "lat_min": 40.736502000000002, 
+      "lat": 40.750180160294107, 
+      "node_type": "target", 
+      "color_index": 2, 
+      "source_node_id": 2, 
+      "id": 9, 
+      "lat_max": 40.761628000000002, 
+      "name": "Gramercy Park", 
+      "lon": -73.974153051764702, 
+      "lon_max": -73.959206219999999
+    }, 
+    {
+      "lon_min": -73.997046799999993, 
+      "lat_min": 40.710762279999997, 
+      "lat": 40.724486977741932, 
+      "node_type": "target", 
+      "color_index": 3, 
+      "source_node_id": 3, 
+      "id": 10, 
+      "lat_max": 40.738274279999999, 
+      "name": "Lower East Side", 
+      "lon": -73.98607585612902, 
+      "lon_max": -73.974224939999999
+    }, 
+    {
+      "lon_min": -74.01713445, 
+      "lat_min": 40.701221279999999, 
+      "lat": 40.708607799310343, 
+      "node_type": "target", 
+      "color_index": 4, 
+      "source_node_id": 4, 
+      "id": 11, 
+      "lat_max": 40.71754834, 
+      "name": "Lower Manhattan", 
+      "lon": -74.008950297241384, 
+      "lon_max": -73.996826189999993
+    }, 
+    {
+      "lon_min": -73.986830769999997, 
+      "lat_min": 40.740258779999998, 
+      "lat": 40.752876987777775, 
+      "node_type": "target", 
+      "color_index": 5, 
+      "source_node_id": 5, 
+      "id": 12, 
+      "lat_max": 40.765909360000002, 
+      "name": "Upper East Side", 
+      "lon": -73.976604794444441, 
+      "lon_max": -73.964784730000005
+    }, 
+    {
+      "lon_min": -74.011219780000005, 
+      "lat_min": 40.714504509999998, 
+      "lat": 40.726125133658535, 
+      "node_type": "target", 
+      "color_index": 6, 
+      "source_node_id": 6, 
+      "id": 13, 
+      "lat_max": 40.741951380000003, 
+      "name": "Village/Soho", 
+      "lon": -74.003323492195122, 
+      "lon_max": -73.9907647
+    }
+  ], 
+  "links": [
+    {
+      "target_name": "Brooklyn", 
+      "source": 0, 
+      "source_name": "Brooklyn", 
+      "target": 7, 
+      "value": 5138.0
+    }, 
+    {
+      "target_name": "Brooklyn", 
+      "source": 1, 
+      "source_name": "Chelsea", 
+      "target": 7, 
+      "value": 11.0
+    }, 
+    {
+      "target_name": "Brooklyn", 
+      "source": 2, 
+      "source_name": "Gramercy Park", 
+      "target": 7, 
+      "value": 3.0
+    }, 
+    {
+      "target_name": "Brooklyn", 
+      "source": 3, 
+      "source_name": "Lower East Side", 
+      "target": 7, 
+      "value": 382.0
+    }, 
+    {
+      "target_name": "Brooklyn", 
+      "source": 4, 
+      "source_name": "Lower Manhattan", 
+      "target": 7, 
+      "value": 259.0
+    }, 
+    {
+      "target_name": "Brooklyn", 
+      "source": 5, 
+      "source_name": "Upper East Side", 
+      "target": 7, 
+      "value": 5.0
+    }, 
+    {
+      "target_name": "Brooklyn", 
+      "source": 6, 
+      "source_name": "Village/Soho", 
+      "target": 7, 
+      "value": 101.0
+    }, 
+    {
+      "target_name": "Chelsea", 
+      "source": 0, 
+      "source_name": "Brooklyn", 
+      "target": 8, 
+      "value": 124.0
+    }, 
+    {
+      "target_name": "Chelsea", 
+      "source": 1, 
+      "source_name": "Chelsea", 
+      "target": 8, 
+      "value": 21160.0
+    }, 
+    {
+      "target_name": "Chelsea", 
+      "source": 2, 
+      "source_name": "Gramercy Park", 
+      "target": 8, 
+      "value": 6478.0
+    }, 
+    {
+      "target_name": "Chelsea", 
+      "source": 3, 
+      "source_name": "Lower East Side", 
+      "target": 8, 
+      "value": 6306.0
+    }, 
+    {
+      "target_name": "Chelsea", 
+      "source": 4, 
+      "source_name": "Lower Manhattan", 
+      "target": 8, 
+      "value": 734.0
+    }, 
+    {
+      "target_name": "Chelsea", 
+      "source": 5, 
+      "source_name": "Upper East Side", 
+      "target": 8, 
+      "value": 2444.0
+    }, 
+    {
+      "target_name": "Chelsea", 
+      "source": 6, 
+      "source_name": "Village/Soho", 
+      "target": 8, 
+      "value": 3888.0
+    }, 
+    {
+      "target_name": "Gramercy Park", 
+      "source": 0, 
+      "source_name": "Brooklyn", 
+      "target": 9, 
+      "value": 71.0
+    }, 
+    {
+      "target_name": "Gramercy Park", 
+      "source": 1, 
+      "source_name": "Chelsea", 
+      "target": 9, 
+      "value": 11353.0
+    }, 
+    {
+      "target_name": "Gramercy Park", 
+      "source": 2, 
+      "source_name": "Gramercy Park", 
+      "target": 9, 
+      "value": 4316.0
+    }, 
+    {
+      "target_name": "Gramercy Park", 
+      "source": 3, 
+      "source_name": "Lower East Side", 
+      "target": 9, 
+      "value": 4882.0
+    }, 
+    {
+      "target_name": "Gramercy Park", 
+      "source": 4, 
+      "source_name": "Lower Manhattan", 
+      "target": 9, 
+      "value": 161.0
+    }, 
+    {
+      "target_name": "Gramercy Park", 
+      "source": 5, 
+      "source_name": "Upper East Side", 
+      "target": 9, 
+      "value": 1330.0
+    }, 
+    {
+      "target_name": "Gramercy Park", 
+      "source": 6, 
+      "source_name": "Village/Soho", 
+      "target": 9, 
+      "value": 985.0
+    }, 
+    {
+      "target_name": "Lower East Side", 
+      "source": 0, 
+      "source_name": "Brooklyn", 
+      "target": 10, 
+      "value": 501.0
+    }, 
+    {
+      "target_name": "Lower East Side", 
+      "source": 1, 
+      "source_name": "Chelsea", 
+      "target": 10, 
+      "value": 3383.0
+    }, 
+    {
+      "target_name": "Lower East Side", 
+      "source": 2, 
+      "source_name": "Gramercy Park", 
+      "target": 10, 
+      "value": 1322.0
+    }, 
+    {
+      "target_name": "Lower East Side", 
+      "source": 3, 
+      "source_name": "Lower East Side", 
+      "target": 10, 
+      "value": 6810.0
+    }, 
+    {
+      "target_name": "Lower East Side", 
+      "source": 4, 
+      "source_name": "Lower Manhattan", 
+      "target": 10, 
+      "value": 498.0
+    }, 
+    {
+      "target_name": "Lower East Side", 
+      "source": 5, 
+      "source_name": "Upper East Side", 
+      "target": 10, 
+      "value": 574.0
+    }, 
+    {
+      "target_name": "Lower East Side", 
+      "source": 6, 
+      "source_name": "Village/Soho", 
+      "target": 10, 
+      "value": 2288.0
+    }, 
+    {
+      "target_name": "Lower Manhattan", 
+      "source": 0, 
+      "source_name": "Brooklyn", 
+      "target": 11, 
+      "value": 1197.0
+    }, 
+    {
+      "target_name": "Lower Manhattan", 
+      "source": 1, 
+      "source_name": "Chelsea", 
+      "target": 11, 
+      "value": 2259.0
+    }, 
+    {
+      "target_name": "Lower Manhattan", 
+      "source": 2, 
+      "source_name": "Gramercy Park", 
+      "target": 11, 
+      "value": 477.0
+    }, 
+    {
+      "target_name": "Lower Manhattan", 
+      "source": 3, 
+      "source_name": "Lower East Side", 
+      "target": 11, 
+      "value": 4544.0
+    }, 
+    {
+      "target_name": "Lower Manhattan", 
+      "source": 4, 
+      "source_name": "Lower Manhattan", 
+      "target": 11, 
+      "value": 3846.0
+    }, 
+    {
+      "target_name": "Lower Manhattan", 
+      "source": 5, 
+      "source_name": "Upper East Side", 
+      "target": 11, 
+      "value": 147.0
+    }, 
+    {
+      "target_name": "Lower Manhattan", 
+      "source": 6, 
+      "source_name": "Village/Soho", 
+      "target": 11, 
+      "value": 3192.0
+    }, 
+    {
+      "target_name": "Upper East Side", 
+      "source": 0, 
+      "source_name": "Brooklyn", 
+      "target": 12, 
+      "value": 15.0
+    }, 
+    {
+      "target_name": "Upper East Side", 
+      "source": 1, 
+      "source_name": "Chelsea", 
+      "target": 12, 
+      "value": 3934.0
+    }, 
+    {
+      "target_name": "Upper East Side", 
+      "source": 2, 
+      "source_name": "Gramercy Park", 
+      "target": 12, 
+      "value": 1604.0
+    }, 
+    {
+      "target_name": "Upper East Side", 
+      "source": 3, 
+      "source_name": "Lower East Side", 
+      "target": 12, 
+      "value": 1642.0
+    }, 
+    {
+      "target_name": "Upper East Side", 
+      "source": 4, 
+      "source_name": "Lower Manhattan", 
+      "target": 12, 
+      "value": 37.0
+    }, 
+    {
+      "target_name": "Upper East Side", 
+      "source": 5, 
+      "source_name": "Upper East Side", 
+      "target": 12, 
+      "value": 409.0
+    }, 
+    {
+      "target_name": "Upper East Side", 
+      "source": 6, 
+      "source_name": "Village/Soho", 
+      "target": 12, 
+      "value": 310.0
+    }, 
+    {
+      "target_name": "Village/Soho", 
+      "source": 0, 
+      "source_name": "Brooklyn", 
+      "target": 13, 
+      "value": 1102.0
+    }, 
+    {
+      "target_name": "Village/Soho", 
+      "source": 1, 
+      "source_name": "Chelsea", 
+      "target": 13, 
+      "value": 5015.0
+    }, 
+    {
+      "target_name": "Village/Soho", 
+      "source": 2, 
+      "source_name": "Gramercy Park", 
+      "target": 13, 
+      "value": 1055.0
+    }, 
+    {
+      "target_name": "Village/Soho", 
+      "source": 3, 
+      "source_name": "Lower East Side", 
+      "target": 13, 
+      "value": 6794.0
+    }, 
+    {
+      "target_name": "Village/Soho", 
+      "source": 4, 
+      "source_name": "Lower Manhattan", 
+      "target": 13, 
+      "value": 2552.0
+    }, 
+    {
+      "target_name": "Village/Soho", 
+      "source": 5, 
+      "source_name": "Upper East Side", 
+      "target": 13, 
+      "value": 670.0
+    }, 
+    {
+      "target_name": "Village/Soho", 
+      "source": 6, 
+      "source_name": "Village/Soho", 
+      "target": 13, 
+      "value": 4053.0
+    }
+  ]
+}
