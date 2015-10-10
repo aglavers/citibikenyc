@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<title>Citibike NYC Morning Rush Flow</title>
+<! based heavily on sankey example http://bost.ocks.org/mike/sankey/>
+<style>
+
+body {
+  font-size: 12pt;
+  font-family: "Helvetica Neue",Arial,sans-serif;
+  color: #777;
+  margin-top:    20px;
+  margin-right:  20px;
+  margin-bottom: 20px;
+  margin-left:   20px;
+}
+
+#chart {
+  height: 600px;
+}
+
+.node rect {
+  cursor: move;
+  fill-opacity: .8;
+  shape-rendering: crispEdges;
+}
+
+.node text {
+  pointer-events: none;
+  color: #999
+}
+
+.link {
+  fill: none;
+  stroke: #000;
+  stroke-opacity: .2;
+}
+
+.link:hover {
+  stroke-opacity: .5;
+}
+
+.text {
+  font-size: 14px;
+  font-family: "Helvetica Neue",Arial,sans-serif;
+  color: #777;
+}
+
+.axislabel {
+  font-weight: bold;
+  font-size: 100% ;
+  color: #777;
+}
+
+.chelsea {
+  font-size: 120%;
+  color: #ff7f0e;
+}
+
+.lowereast {
+  font-size: 120%;
+  color: #d62728;
+}
+
+.brooklyn {
+  font-size: 120%;
+  color: #1f77b4
+}
+
+</style>
+<body>
+<h1>Citibike New York City - Morning rush in June 2015</h1>
+<h2>Citibike trips, as flows between neighborhoods</h2>
+<br>The <a href="http://www.citibikenyc.com/">Citibike bike sharing service</a> in New York City is a robust commute alternative, despite its growing pains. The interactive chart, based on <a href="http://www.citibikenyc.com/system-data">trip histories</a>, shows rides as flows between the departure and arrival neighborhoods for morning rush hours.<br><br>
+<table style="width:100%">
+<tr style="vertical-align:top">
+<td style="width:55% padding:100px ">
+<p id="chart">
+</td>
+<td style="width:10%">
+</td>
+<td style="width:35% padding:100px vertical-align:top">
+<p>The busiest departure neighborhoods are from <span class="chelsea">Chelsea</span> and the <span class="lowereast">Lower East</span> but the destinations are  different.
+<p>About 45% of
+<span class="chelsea">Chelsea</span> departures stay within the neigborhood while 76% of the <span class="lowereast">Lower East</span> departures head for other neighborhoods.  This can be seen in the far broader fan out of the <span class="lowereast">Lower East</span> flows.
+<p>The <span class="lowereast">Lower East</span> shows a strong departure/arrival imblance with only 51% staying with the neighborhod, suggesting that it is mostly residential neighborhood and not a work destination.
+<p><span class="brooklyn">Brooklyn</span>, which is separated from the other neighborhoods by the Hudson River, has far fewer rides but 63% remain within the neighborhood. Impressively, the remaining riders cross the Brooklyn Bridge.
+<br><br><br><p><b>Explore by moving the mouse over the departures, the arrivals or the flows.</b>
+</td>
+</tr>
+</table>
+<script src="http://d3js.org/d3.v2.min.js?2.9.1"></script>
+<script src="citibike_sankey.js"></script>>
+<script>
+
+var margin = {top: 5, right: 150, bottom: 10, left: 150},
+
+    width = 600 - margin.left - margin.right,
+    height = 520 - margin.top - margin.bottom;
+
+var formatNumber = d3.format(",.0f"),
+    format = function(d) { return formatNumber(d) ; };
+
+var formatPercent = d3.format(",.0%"),
+    format = function(d) { return formatNumber(d) ; };
+
+var formatNodeTooltip =  function(d) { 
+    if (d.node_type == "source") {
+      t2 = formatNumber(d.value) + " departures\n" ;
+      t3 = formatPercent(d.value_fraction) + " of all departures\n" ;
+      t4 = "" ;
+    } else {
+      t2 = formatNumber(d.value) + " arrivals, " ;
+      t3 = ((d.value>d.assoc_node.value) ? "a gain of " : " a loss of ") + 
+         formatPercent(Math.abs(d.value/d.assoc_node.value - 1)) +"\n";
+      t4 = formatPercent(d.value_fraction) + " of all arrivals\n" ;
+    }
+    tt = d.name + "\n" + t2 + t3 + t4;
+    // console.log(tt) ;
+  return tt
+};
+
+
+var svg = d3.select("#chart").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+var sankey = d3.sankey()
+    .nodeWidth(18)
+    .nodePadding(10)
+    .size([width, height]);
+
+var path = sankey.link();
+
+// parent for the node structure
+var bike_rides = {}
+
+// currentlt no action on mousemove 
+function mouseMove() {} ;
+ 
+var color_scale = d3.scale.category10() ;
+function node_color (node) {
+  color = color_scale(node.color_index )  ;
+  // console.log("Node " + node.name + " Color: " + color)
+  return color ;
+} ;
+
+var show_opacity = 0.4,
+    hide_opacity = "0.04" ;
+
+
+// used to show the initial state which emphasizese certain stations
+function show_graded_opacity(d) {
+    if (d.source.name == "Chelsea" | d.source.name == "Lower East" | d.source.name == "Brooklyn" ) {
+      return 0.6;
+    } else {
+      return 0.1;
+    }
+}
+
+// debugger;
+d3.json("station_trips_sankey.json", function(bike_rides) {
+
+  sankey
+      .nodes(bike_rides.nodes)
+      .links(bike_rides.links)
+      .layout(32);
+
+  total_rides = d3.sum(bike_rides.links, function(d) {return d.value; }) ;
+  // link up corresponding sources and target - assoc_node
+  neighborhood_count = bike_rides.nodes.length / 2 ;
+  first_source_node = bike_rides.nodes[0] ;
+  first_target_node = bike_rides.nodes[neighborhood_count] ;
+  for (ni = 0 ; ni<neighborhood_count; ni++ ) {
+     bike_rides.nodes[ni].assoc_node = bike_rides.nodes[ni + neighborhood_count] ;
+     bike_rides.nodes[ni + neighborhood_count].assoc_node = bike_rides.nodes[ni] ;
+     bike_rides.nodes[ni].value_fraction = bike_rides.nodes[ni].value / total_rides ;
+     bike_rides.nodes[ni + neighborhood_count].value_fraction = bike_rides.nodes[ni].value / total_rides ;
+  }
+  
+
+  // Axis titles - Departure 
+  svg.append("text")
+    .attr("x", first_source_node.x - 6)
+    .attr("y", 12)
+    .attr("text-anchor", "end")
+    .attr("class", "axislabel")
+    .text("DEPARTURES") ;
+
+  // Axis titles - Arrival
+  svg.append("text")
+    .attr("x", first_target_node.x + sankey.nodeWidth() + 6)
+    .attr("y", 12)
+    .attr("text-anchor", "start")
+    .attr("class", "axislabel")
+    .text("ARRIVALS") ;
+
+  // Links - as paths
+  var link = svg.append("g").selectAll(".link")
+      .data(bike_rides.links)
+    .enter().append("path")
+      .attr("class", "link")
+      .attr("link_source_id", function(d) {return d.source.id;})
+      .attr("link_target_id", function(d) {return d.target.id;})
+      .attr("d", path)
+      .style("fill", "none")
+      .style("stroke-opacity", function(d) {return show_graded_opacity (d); })
+      .style("stroke-width", function(d) { return Math.max(1, d.dy); })
+      .style("stroke", function(d) { return d.color = node_color(d.source); })
+      .sort(function(a, b) { return b.dy - a.dy; })
+      .on("mouseover", function (d) {return linkSubSet(d.source.id, bike_rides.nodes.length) ; }) 
+      .on("mousemove", mouseMove()) 
+      .on("mouseout",  function () {return linkSubSet(-1, bike_rides.nodes.length); })
+  link.append("title")
+      .text(function(d) { return d.source.name + " → " + d.target.name + "\n" + format(d.value) + " rides\n" + 
+        Math.round(100.0*d.value/d.source.value) + "% of " + 
+        d.source.name + " departures" ;  });
+
+ // Nodes - as rectangles
+ var node = svg.append("g").selectAll(".node")
+      .data(bike_rides.nodes)
+    .enter().append("g")
+      .attr("class", "node")
+      .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
+      .on("mouseover", function (d) {return linkSubSet(d.id, bike_rides.nodes.length) ; }) 
+      .on("mousemove", mouseMove()) 
+      .on("mouseout",  function ()  {return linkSubSet(-1, bike_rides.nodes.length) ; });
+  
+  node.append("rect")
+      .attr("height", function(d) { return d.dy; })
+      .attr("width", sankey.nodeWidth())
+      .style("fill", function(d) { return d.color = node_color(d) ; })
+      .style("stroke", function(d) { return d3.rgb(d.color).darker(0.1); })
+    .append("title")
+      .text(function(d) { return formatNodeTooltip(d); });
+
+  // Text for the node labels
+  node.append("text")
+      .attr("class", "nodelabel")
+      .attr("x", -6)
+      .attr("y", function(d) { return d.dy / 2; })
+      .attr("dy", "0.2em")
+      .attr("text-anchor", "end")
+      .attr("transform", null)
+      .text(function(d) { return d.name; })
+    .filter(function(d) { return d.x > width / 2; })
+      .attr("x", 6 + sankey.nodeWidth())
+      .attr("text-anchor", "start");
+
+  // determines a subset of source links attached to this node
+  // ransition to highlight selected and fade the not selected
+  function linkSubSet(index, nodes_length) {
+
+    function make_other_selectors(ix, count) {
+       var ixx = (ix+1)%count ;
+       var sel = ""
+       var delim = ""
+       while (ixx != ix) {
+        sel = sel + delim + make_selector(ixx) 
+        delim = ","
+        ixx = (ixx+1)%count
+       }
+       // console.log("Selectors: " + sel)
+       return sel;
+    }
+    // selects links to or from this index (comma is the boolean OR)
+    function make_selector(i) {
+       var sel = '[link_source_id="' + i + '"],' +
+                 '[link_target_id="' + i + '"]' ;
+       return sel
+    }
+
+    //if pointing at an item
+    var hide_selector, show_selector ;
+    if (index >= 0) { 
+      show_selector = make_selector(index) ;          // show this item
+      hide_selector = make_other_selectors(index, nodes_length); // hide others
+    } else { // show all
+      show_selector = ".link" ; // show all
+      hide_selector = "" ;  // hide nothing
+    }
+    // show the selected 
+    var t2 = svg.transition()
+        .duration(0)
+        .delay(0);
+    // console.log("Visible: " + show_selector);
+    t2.selectAll(show_selector )
+      .style("stroke-opacity", show_opacity)
+  //    .attr("visibility", "visible")
+
+    // hide the other (unless its show all)
+    var delay_ms = 0;
+    if (hide_selector != "") {
+      var t1 = svg.transition()
+  //        .duration()
+          .delay(function (d, i) {delay_ms+=200;console.log("delay "+delay_ms);return delay_ms})
+      //  console.log("Hidden: " + hide_selector);
+      t1.selectAll(hide_selector)    
+          .style("stroke-opacity", hide_opacity)
+    //    .attr("visibility", "hidden")
+    }
+    // show the selected 
+    var t3 = svg.transition()
+        .duration(200)
+        .delay(0);
+    // console.log("Visible: " + show_selector);
+    t3.selectAll(show_selector )
+     .style("stroke-opacity", show_opacity)
+    //  .attr("visibility", "visible")
+  } }  );
+
+</script>
+</body>
