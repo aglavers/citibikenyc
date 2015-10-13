@@ -1,0 +1,19 @@
+<<<<<<< HEAD
+group_text_x,Brooklyn,Chelsea,Gramercy Park,Lower East,Lower Manhattan,Upper East,Village/Soho
+Brooklyn,5138,124,71,501,1197,15,1102
+Chelsea,11,21160,11353,3383,2259,3788,5015
+Gramercy Park,3,6478,4316,1322,477,1516,1055
+Lower East,382,6306,4882,6810,4544,1627,6794
+Lower Manhattan,259,734,161,498,3846,37,2552
+Upper East,5,2409,1304,568,147,383,668
+Village/Soho,101,3888,985,2288,3192,296,4053
+=======
+group_text_x,Brooklyn,Chelsea,Gramercy Park,Lower East Side,Lower Manhattan,Upper East Side,Village/Soho
+Brooklyn,5138,124,71,501,1197,15,1102
+Chelsea,11,21160,11353,3383,2259,3934,5015
+Gramercy Park,3,6478,4316,1322,477,1604,1055
+Lower East Side,382,6306,4882,6810,4544,1642,6794
+Lower Manhattan,259,734,161,498,3846,37,2552
+Upper East Side,5,2444,1330,574,147,409,670
+Village/Soho,101,3888,985,2288,3192,310,4053
+>>>>>>> master
