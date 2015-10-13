@@ -38,13 +38,39 @@ The earliest versions focused on [D3 Chord Layout](http://bl.ocks.org/mbostock/4
 
 The change to the [D3 Sankey layout](http://bost.ocks.org/mike/sankey/) made the chart easier to comprehend, but the number of overlapping flows needed techniques to reveal the story.
 
+- Sankey layout
+
+- Changed vertical ordering in sankey.js
+
 #### Mouse-over visibility and color
 
 The basic sankey layout was changed substantially to handle mouse overs and color nodes and paths simultaneously. A number of color palettes were explored, finally settling on this [palette from colorbrewer.org](http://colorbrewer2.org/?type=qualitative&scheme=Set2&n=7).
 
+- Mouse over on nodes and flows
+
+- Narrative
+
+- Full page cocept
+
+- Extensive updates to select nodes and flows simultaneously
+
+- Careful attention to hide and reveal using opacity 
+
+- transition timing
+
+- New color pallette with carefully tweaked opacity
+
+- Labels on outside
+
 #### Mouse-over titles (tool tips)
 
 Mouse over titles were extended to include comprehensive flow information after feedback indicated confusion with the meaning of various percentages.
+
+- percentage in nodes
+
+- multi-line tool tips
+
+- new measure of bikes gained/lost
 
 
 #### Telling the story
