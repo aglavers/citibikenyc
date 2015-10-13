@@ -107,7 +107,7 @@ http://www.crummy.com/software/BeautifulSoup/
 Parsing html for neighborhood/zip tables
 
 #### Stack Overflow
-http:stackoverflow.com
+http://stackoverflow.com
 
 #### Hosting pages on git
 http://blog.teamtreehouse.com/using-github-pages-to-host-your-website
@@ -118,7 +118,9 @@ https://github.com/yhat/ggplot/
 ####  A few of the many smaller sites referenced for details
 
 Referenced many articles for small coding tips, bug resolution etc.
+
 http://www.w3schools.com/tags/tag_span.asp
+
 http://stackoverflow.com/questions/13379912/javascript-summing-arrays-using-d3-nest
 
 
