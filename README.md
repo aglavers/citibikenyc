@@ -27,7 +27,7 @@ The design goals for this project were driven by the students need to learn ways
 
 Given this choice, a data set of flows was sought, finally settling on the Citibike data set.
 
-The design iterations can be seen in [index_1.html](index_1.html)
+The design iterations can be seen in [index_1.html](http://aglavers.github.io/citibikenyc/index_1.html)
 
 #### Chord layout
 
