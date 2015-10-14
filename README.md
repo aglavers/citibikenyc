@@ -100,6 +100,28 @@ Brief munge steps:
 ## Feedback 
 
 Key feedback received addressed confusing percentages. As a result a calculation bug was fixed and the tool tip wording was substantially improved. The feedback affirmed key conclusions.
+#### Person 1
+I liked the simplicity of your visualization and a interesting subject.
+We can see clear which neighborhoods must be more residential or work places.
+I suppose that Chelsea must be a both.
+The tooltip that says 'gain/lost' just before the % of arrivals sounds onfusing to me. For instance, Chelsea have 36% of departures and 36% of arrivals, but 12% of loss. Is the loss of the 36%?
+
+My questions raised from the data are (probably not on the scope of the project):
+-> What are the population on each one?
+-> Is there anything cultural that makes Lower East or Chelsea being the busiest?
+-> Is there any topographical characteristics that can make those difference, for example the busiest are flat or there are hills on Lower Manhattan or Upper East?
+
+Marina
+#### Person 2 
+I personally really like the grey font color. However, I had my resume in a similar color and got feedback that it was tough to read for some people.
+
+This point is more related to the copy than the code, but do you have to mention that there are growing pains to Citibikes program? It seems odd to mention but not expand on why or how it relates to your flow chart. 
+
+I almost missed the interactive piece of the flow layout because "Explore by moving the mouse over the departures, the arrivals, or the flows." is all the way at the bottom. I would include it in the first paragraph/blurb. Even though you mention that it is interactive, I accidentally looked over that fact so others may as well.
+
+I think the colors are very clear and well chosen to identify each individual neighborhood. The fact that the chart shows the particular neighborhood as you hover over the name in the extra info is a nice touch.
+
+Overall, the size of the page falls just longer than one screen (that half fold newspaper theory). I think if you got rid of the second subtitle and worked on spacing a bit, you may be able to have all of your info fit on one screen without making the viewer scroll down and would be more impactful.
 
 ## Resources
 
