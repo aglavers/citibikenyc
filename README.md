@@ -111,7 +111,6 @@ My questions raised from the data are (probably not on the scope of the project)
 -> Is there anything cultural that makes Lower East or Chelsea being the busiest?
 -> Is there any topographical characteristics that can make those difference, for example the busiest are flat or there are hills on Lower Manhattan or Upper East?
 
-Marina
 #### Person 2 
 I personally really like the grey font color. However, I had my resume in a similar color and got feedback that it was tough to read for some people.
 
@@ -123,6 +122,13 @@ I think the colors are very clear and well chosen to identify each individual ne
 
 Overall, the size of the page falls just longer than one screen (that half fold newspaper theory). I think if you got rid of the second subtitle and worked on spacing a bit, you may be able to have all of your info fit on one screen without making the viewer scroll down and would be more impactful.
 
+Person 3
+---------
+
+Great visualization! I really like that all of the animations behave intuitively and that the tooltips are customized for departures and arrivals. Two small things:
+
+There a bit too much delay after mouseover before the tooltip appears. I didn't notice they were there at first.
+A small map of that highlights the corresponding neighborhood on mouseover could help give a lot more context to non New York natives.
 ## Resources
 
 #### D3 Chord layout
