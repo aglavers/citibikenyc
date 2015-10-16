@@ -129,6 +129,18 @@ Great visualization! I really like that all of the animations behave intuitively
 
 There a bit too much delay after mouseover before the tooltip appears. I didn't notice they were there at first.
 A small map of that highlights the corresponding neighborhood on mouseover could help give a lot more context to non New York natives.
+
+Person 4
+--------
+Hey,
+
+- Initially the information was about neighborhoods so I wanted maps, but when I actually read the first sentence. I realized the graph on the right was perfect visualization of the data. 
+- I was confused about the “Within the neighborhood” section because it mentioned “45% of Chelsea” but I didn’t see 45% for Chelsea in the graph.
+- I guess my mouse affected the intensity of the colors because the Gramercy Park area was the most vivid. Might be useful to include instructions “hover over area for highlighting.”
+- Should we exclude the departures that come back and arrive at the same place? Or maybe it’s useful to show for the purpose of demonstrating neighborhood busy-ness?
+
+I learned that people take these bikes across the Brooklyn Bridge for work! Is it the farthest distance too?
+
 ## Resources
 
 #### D3 Chord layout
