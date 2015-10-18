@@ -8,7 +8,9 @@
 body {
   font-size: 12pt;
   font-family: "Helvetica Neue",Arial,sans-serif;
-  color: #888;
+  color: #666;
+  fill: #666;
+  stroke: none;
   margin-top:    20px;
   margin-right:  20px;
   margin-bottom: 20px;
@@ -27,13 +29,19 @@ body {
 
 .node text {
   pointer-events: none;
-  color: #888
+  color: #666
 }
 
 .link {
   fill: none;
   stroke: #000;
   stroke-opacity: .2;
+}
+.link_text  {
+  font-weight: bold;
+  font-size: 60% ;
+  fill-color: #666;
+  fill-opacity: 0;
 }
 
 .link:hover {
@@ -43,18 +51,18 @@ body {
 .text {
   font-size: 14px;
   font-family: "Helvetica Neue",Arial,sans-serif;
-  color: #888;
+  color: #666;
 }
 
 .axislabel text {
   font-weight: bold;
   font-size: 120% ;
-  color: #888;
+  color: #666;
 }
 .nodelabel text {
   font-weight: bold;
   font-size: 100% ;
-  color: #888;
+  color: #666;
 }
 
 .node_ref {
@@ -66,19 +74,20 @@ body {
 <body>
 <h1>Citibike New York City - Morning Rush - June 2015</h1>
 <h2>Citibike trips, as flows between neighborhoods</h2>
-<br>The <a href="http://www.citibikenyc.com/">Citibike bike sharing service</a> in New York City is a robust commute alternative, despite its growing pains. This interactive chart, based on <a href="http://www.citibikenyc.com/system-data">trip histories</a>, shows the number of rides as flows between the departure and arrival neighborhoods for morning rush hours.<br><br>
+<br>The <a href="http://www.citibikenyc.com/">Citibike bike sharing service</a> in New York City is a robust commute alternative. This interactive chart, based on <a href="http://www.citibikenyc.com/system-data">trip histories</a>, shows the number of rides as flows between the departure and arrival neighborhoods for morning rush hours.<br><br>
 <table style="width:100%">
   <tr style="vertical-align:top">
-    <td style="width:35% padding:100px vertical-align:top">
+    <td rowspan=2 style="width:35% padding:100px vertical-align:top">
+      <b>Explore</b>
+      <br>Move the mouse over the highighted text, departures, arrivals or flows.</b>
       <p><b>Busiest</b>
       <br>The busiest departure neighborhoods are <span class="node_ref">Chelsea</span> and the <span class="node_ref">Lower East</span> with about 47,000 and 31,000 departures respectively. The least busy neighborhood is <span class="node_ref">Upper East</span>, with only 5,500 departures.
       <p><b>Within the Neighborhood</b>
-      <br>About 45% of
+      <br>About half of
       Chelsea departures stay within the neighborhood compared to only 12% for the Lower East This can be seen in the far broader fan-out of the <span class="node_ref">Lower East</span> flows and the thick intra-neighborhood flow of <span class="node_ref">Chelsea</span>. 
-      63% of all rides from <span class="node_ref">Brooklyn</span> stay within the neighborhood because the Hudson River separates it from the other neighborhoods. Impressively, the remaining riders cross the Brooklyn Bridge.
+      Most of all rides from <span class="node_ref">Brooklyn</span> stay within the neighborhood because the Hudson River separates it from the other neighborhoods. Impressively, the remaining riders cross the Brooklyn Bridge.
       <p><b>Imbalance</b><br>The <span class="node_ref">Lower East</span> shows a strong departure/arrival imbalance with 78% of departures ending elsewhere, suggesting that it is a mostly residential neighborhood and not a work destination. <span class="node_ref">Lower Manhattan</span> is clearly more business than residential because arrivals are twice the departures, although the total rides are relatively small. <span class="node_ref">Gramercy Park</span> and <span class="node_ref">Village/Soho</span> have small gains in arrivals vs. departures. 
       <p><b>Bikes Gained/Lost</b><br>The largest gainer is <span class="node_ref">Lower Manhattan</span> which ends with 93% more bikes than it starts with. The <span class="node_ref">Lower East</span> ends with 51% fewer bikes.
-      <br><br><b>Explore by moving the mouse over the departures, the arrivals or the flows.</b>
     </td>
     <td style="width:10%">
     </td>
@@ -103,10 +112,10 @@ body {
 <script>
 
 // marging an plt sizes 
-var margin = {top: 5, right: 150, bottom: 50, left: 150},
+var margin = {top: 5, right: 150, bottom: 60, left: 150},
 
     width = 600 - margin.left - margin.right,
-    height = 550 - margin.top - margin.bottom,
+    height = 560 - margin.top - margin.bottom,
     centerx = 600 / 2 ;
 
 // formatters
@@ -116,21 +125,20 @@ var formatNumber = d3.format(",.0f"),
 var formatPercent = d3.format(",.0%"),
     format = function(d) { return formatNumber(d) ; };
 
+var formatPercent1 = d3.format(",.1%"),
+    format = function(d) { return formatNumber(d) ; };
+
 // format thecNodectooltip. 
 var formatNodeTooltip =  function(d) { 
     if (d.node_type == "source") {
-      t2 = formatNumber(d.value) + " departures, which is " ;
-      t3 = formatPercent(d.value_fraction) + " of all departures\n" ;
-      t4 = formatPercent(d.value_intra/d.value) + " of " + d.name + " departures stay in the neighborhood\n" ;
-      t5 = formatPercent(1 - d.value_intra/d.value) + " of " + d.name + " departures end in other neighborhoods\n" ; 
-      tt = d.name + "\n" + t2 + t3 + t4 + t5;
+      t2 = formatNumber(d.value) + " departures" ; 
+      tt = d.name + "\n" + t2 ;
     } else {
-      t2 = formatNumber(d.value) + " arrivals, which is " ;
-      t3 = formatPercent(d.value_fraction) + " of all arrivals\n" ;
+      t2 = formatNumber(d.value) + " arrivals\n" ;
       change = d.value/d.assoc_node.value - 1
       t4 = "At end of morning rush, " + d.name + " has " + 
            formatPercent(Math.abs(change)) + ((change > 0) ? " more bikes" : " fewer bikes") ;
-      tt = d.name + "\n" + t2 + t3 + t4;
+      tt = d.name + "\n" + t2 + t4;
     } ;
     // console.log(tt) ;
   return tt
@@ -183,13 +191,15 @@ function node_color_by_name (node_name) {
   return color ;
 } ;
 
-// opacities for show and hide as well as the initial state for
-// selected statiosn
-var show_opacity = 0.6,
-    hide_opacity = "0.1" ;
+// opacities for foreground and background link as well as the initial state for
+// selected stations
+var fg_opacity = "0.6",
+    bg_opacity = "0.1",
+    fg_text_opacity = "1.0",
+    bg_text_opacity = "0.0" ;
 
 
-// used to show the initial state which emphasizese certain stations
+// used to show the initial state which emphasizes certain stations
 function show_graded_opacity(d) {
     if (d.source.name == "Chelsea" | d.source.name == "Lower East" | d.source.name == "Upper East" ) {
       return 0.6;
@@ -245,7 +255,7 @@ d3.json("station_trips_sankey.json", function(rides) {
     .attr("y", 12)
     .attr("text-anchor", "end")
     .attr("class", "axislabel")
-    .style("fill", "#888")
+    .style("fill", "#666")
     .style("font-weight", "bold")
     .text("DEPARTURES") 
     .on("mouseover",  function ()  {return linkSubSet(-1, rides.nodes.length) ; });
@@ -257,7 +267,7 @@ d3.json("station_trips_sankey.json", function(rides) {
     .attr("text-anchor", "start")
     .attr("class", "axislabel")
     .style("font-weight", "bold")
-    .style("fill", "#888")
+    .style("fill", "#666")
     .text("ARRIVALS") ;
 
   // total rides 
@@ -266,15 +276,26 @@ d3.json("station_trips_sankey.json", function(rides) {
     .attr("y", height  + 40)
     .attr("text-anchor", "middle")
     .style("font-weight", "bold")
-    .style("fill", "#888")
-    .style("font-weight", "bold")
-    .text(formatNumber(total_rides) + " Citibike NYC rides, 4 am to 10 am, June 2015") ;
+    .style("fill", "#666")
+    .text(formatNumber(total_rides) + " Citibike NYC rides, 4 am to 10 am, June 2015") 
 
-  // Links - as paths
+  svg.append("text")
+    .attr("x", width/2)
+    .attr("y", height  + 52)
+    .attr("text-anchor", "middle")
+    .style("font-size", "80%")
+    .style("font-weight", "normal")
+    .style("fill", "#666")
+    .text("Percentages less than 1% omitted") 
+
+  svg.append("text") 
+
+  // LINKS - as paths
   var link = svg.append("g").selectAll(".link")
       .data(rides.links)
     .enter().append("path")
       .attr("class", "link")
+      .attr("id", function(d) {return "link_" + d.source.id+ "_" + d.target.id;})
       .attr("link_source_id", function(d) {return d.source.id;})
       .attr("link_target_id", function(d) {return d.target.id;})
       .attr("d", path)
@@ -291,12 +312,24 @@ d3.json("station_trips_sankey.json", function(rides) {
   // Link - Tooltip
   link.append("title")
       .text(function(d) { return d.source.name + " → " + d.target.name + "\n" +
-         format(d.value) + " rides, which is " + 
-         formatPercent(d.value/total_rides) + " of all rides\n" +
-         formatPercent(d.value/d.source.value) + " of rides from " + d.source.name + " end at " + d.target.name + "\n" +
-         formatPercent(d.value/d.target.value) + " of rides ending at " + d.target.name + " start from " + d.source.name;  }) ;
+         format(d.value) + " rides\n" + 
+         formatPercent1(d.value/total_rides) ;  }) ;
 
- // Nodes - as rectangles plus tooltiip
+  // link text- percentages
+  var linkPaths = svg.selectAll("g link_text")
+        .data(rides.links)
+  .enter()
+  .append("text")
+    .attr("class", "link_text")
+    .attr("link_text_source_id", function(d) {return d.source.id;})
+    .attr("link_text_target_id", function(d) {return d.target.id;})
+    .attr("text-anchor", "end")
+    .attr("dominant-baseline",  "middle")
+    .attr("x", function(d) {return d.target.x  - 3;})
+    .attr("y", function(d) {return d.target.y + d.ty  + d.dy/2 ;})
+    .text(function(d) {return (d.value/total_rides) >.01 ? formatPercent1(d.value/total_rides) : "";}) ;
+
+ // NODES - as rectangles plus tooltiip
  var node = svg.append("g").selectAll(".node")
       .data(rides.nodes)
     .enter().append("g")
@@ -321,7 +354,7 @@ d3.json("station_trips_sankey.json", function(rides) {
       .attr("text-anchor", "end")
       .attr("transform", null)
       .text(function(d) { return d.name; })
-      .style("fill", "#888")
+      .style("fill", "#666")
     .on("mouseover", function (d) {return linkSubSet(d.id, rides.nodes.length) ; }) 
     .filter(function(d) { return d.x > width / 2; })
       .attr("x", 6 + sankey.nodeWidth())
@@ -337,20 +370,22 @@ d3.json("station_trips_sankey.json", function(rides) {
       .attr("transform", null)
       .text(function(d) { return formatPercent(d.value_fraction)})
       .style("font-size", "0.9em")
-      .style("fill", "#777");
+      .style("fill", "#666");
 
-  // Determines a subset of source links attached to this node
+  // Determines a subset of source links attached to this node identified by index
   // Transition to highlight selected and fade the not selected
   // This is the fundamental mouseover selection function
   var selected_index ;
   function linkSubSet(index, nodes_length) {
 
-    function make_other_selectors(ix, count) {
+    // selects all links except teh currently selected
+    function make_other_selectors(identifier, ix, count) {
+       // identifier: is  "link_source_id" or "link_text_source_id"
        var ixx = (ix+1)%count ;
        var sel = ""
        var delim = ""
        while (ixx != ix) {
-        sel = sel + delim + make_selector(ixx) 
+        sel = sel + delim + make_selector(identifier, ixx) 
         delim = ","
         ixx = (ixx+1)%count
        }
@@ -358,53 +393,64 @@ d3.json("station_trips_sankey.json", function(rides) {
        return sel;
     }
     // selects links to or from this index (comma is the boolean OR)
-    function make_selector(i) {
-       var sel = '[link_source_id="' + i + '"],' +
-                 '[link_target_id="' + i + '"]' ;
+    function make_selector(identifier, i) {
+       var sel = '[' + identifier + '_source_id="' + i + '"],' +
+                 '[' + identifier + '_target_id="' + i + '"]' ;
        return sel
     }
 
-    // if the same as the cuurent then dont tranitysition
+    // if the same as the current then dont transition
     // console.log("selecting " + index)
     if (index == selected_index) {
       return
     }
     selected_index=index;
 
+    // BUILD foreground (fg) and background (BG) SELECTORS, to fade background links, hide
+    // background text. When all links are shown the text is background as well to avoid clutter
     //if pointing at an item
-    var hide_selector, show_selector ;
+    var bg_selector, fg_selector ;
     if (index >= 0) { 
-      show_selector = make_selector(index) ;          // show this item
-      hide_selector = make_other_selectors(index, nodes_length); // hide others
+      fg_selector = make_selector("link", index)     // show link
+      bg_selector = make_other_selectors("link", index, nodes_length); // bg  link    
+      fg_text_selector = make_selector("link_text", index)     // show link text
+      bg_text_selector = make_other_selectors("link_text", index, nodes_length); // bg link text
     } else { // show all
-      show_selector = ".link" ; // show all
-      hide_selector = "" ;  // hide nothing
+      fg_selector = ".link" ; // show all links
+      bg_selector = "" ;  // hide nothing
+      fg_text_selector = "" ; // show no text to avoid clutter
+      bg_text_selector = ".link_text"
     }
     // show the selected 
     var t2 = svg.transition()
         .duration(0)
         .delay(0);
-    // console.log("Visible: " + show_selector);
-    t2.selectAll(show_selector )
-      .style("stroke-opacity", show_opacity)
-  //    .attr("visibility", "visible")
+    // console.log("Visible: " + fg_selector +  "\n" + fg_text_selector + "\n");
+    t2.selectAll(fg_selector )
+      .style("stroke-opacity", fg_opacity)
+    t2.selectAll(fg_text_selector )
+      .style("fill-opacity", fg_text_opacity)
 
     // hide the other (unless its show all)
     var delay_ms = 0;
-    if (hide_selector != "") {
+    if (bg_selector != "") {
       var t1 = svg.transition()
           .delay(function (d, i) {delay_ms+=200;return delay_ms})
-      //  console.log("Hidden: " + hide_selector);
-      t1.selectAll(hide_selector)    
-          .style("stroke-opacity", hide_opacity)
+      // console.log("Hidden: " + bg_selector + "\n" + bg_text_selector + "\n");
+      t1.selectAll(bg_selector)    
+          .style("stroke-opacity", bg_opacity)
+      t1.selectAll(bg_text_selector)    
+          .style("fill-opacity", bg_text_opacity)
     }
     // show the selected 
     var t3 = svg.transition()
         .duration(200)
         .delay(0);
-    // console.log("Visible: " + show_selector);
-    t3.selectAll(show_selector )
-     .style("stroke-opacity", show_opacity)
+    // console.log("Visible: " + fg_selector);
+    t3.selectAll(fg_selector )
+     .style("stroke-opacity", fg_opacity)
+    t3.selectAll(fg_text_selector )
+     .style("fill-opacity", fg_text_opacity)
   } }  );
 
 </script>
